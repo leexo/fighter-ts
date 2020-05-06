@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = __importDefault(require("fs"));
-var ClassType_1 = __importDefault(require("./ClassType"));
+// import ClassType from './ClassType';
 var Game_1 = __importDefault(require("./Game"));
 var Files = /** @class */ (function () {
     function Files() {
@@ -35,7 +35,7 @@ var Files = /** @class */ (function () {
                 var save = {
                     player: {
                         level: g.player != null ? g.player.level : 0,
-                        class: g.player != null ? g.player.class_type : ClassType_1.default.Archer
+                        class: g.player != null ? g.player.class_type : '' // ClassType.Archer
                     },
                     game_stats: g.game_stats
                 };

@@ -83,12 +83,12 @@ var Game = /** @class */ (function () {
         if (this._player == null) {
             this.io.clear();
             var class_type = classes[this.io.inputChoose(classes, 'Which class do you wish to be?')];
-            this._player = new Player_1.default(class_type);
+            this._player = new Player_1.default(class_type /* as ClassType*/);
         }
         else {
             this._player = new Player_1.default(this._player.class_type, this._player.level);
         }
-        this._opponent = new Opponent_1.default(classes[Math.floor(Math.random() * classes.length)], Math.floor(this._player.level * this.settings.level_opponent_scale));
+        this._opponent = new Opponent_1.default(classes[Math.floor(Math.random() * classes.length)] /* as ClassType*/, Math.floor(this._player.level * this.settings.level_opponent_scale));
         this._fight_stats = empty_fight_stats;
         this.setGameState(GameState_1.default.Fight);
     };
@@ -267,7 +267,7 @@ var Game = /** @class */ (function () {
                             selected_class = 'none';
                         }
                         else if (c.includes(input)) {
-                            selected_class = input.toUpperCase();
+                            selected_class = input.toUpperCase() /* as ClassType*/;
                         }
                         else {
                             _this.io.output('No class with that name exists.');

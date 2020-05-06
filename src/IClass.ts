@@ -1,4 +1,4 @@
-import ClassType from "./ClassType";
+//import ClassType from "./ClassType";
 import IMinMax from "./IMinMax";
 
 export default interface IClass {
@@ -11,6 +11,6 @@ export default interface IClass {
     crit_mult: number;
     hit_chance: number;
     rest_restore: number;
-    weakness: ClassType;
+    weakness: string;
 
 }

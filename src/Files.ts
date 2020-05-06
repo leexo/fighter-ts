@@ -1,5 +1,5 @@
 import fs from 'fs';
-import ClassType from './ClassType';
+// import ClassType from './ClassType';
 import Game from './Game';
 import IClass from './IClass';
 import IGameSave from './IGameSave';
@@ -43,7 +43,7 @@ export default class Files {
 
                     player: {
                         level: g.player != null ? g.player.level : 0,
-                        class: g.player != null ? g.player.class_type : ClassType.Archer
+                        class: g.player != null ? g.player.class_type : '' // ClassType.Archer
                     },
 
                     game_stats: g.game_stats

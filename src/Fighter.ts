@@ -1,4 +1,4 @@
-import ClassType from "./ClassType";
+// import ClassType from "./ClassType";
 import Game from "./Game";
 import IClass from "./IClass";
 import IMinMax from "./IMinMax";
@@ -22,18 +22,18 @@ export default abstract class Fighter {
     public readonly base: IClass;
 
     public level: number;
-    public readonly class_type: ClassType;
+    public readonly class_type: string;
     public readonly damage: IMinMax;
     public readonly crit_chance: number;
     public readonly crit_mult: number;
     public readonly hit_chance: number;
     public readonly rest_restore: number;
-    public readonly weakness: ClassType;
+    public readonly weakness: string;
     public _armor: number;
 
     private _health: number;
 
-    public constructor(type: ClassType, level: number = 1) {
+    public constructor(type: string, level: number = 1) {
 
         const data = applyLevelMult(Game.Instance.class_bases[type], level);
 
@@ -66,7 +66,7 @@ export default abstract class Fighter {
 
     public takeDamage(damage: number, opponent: Fighter) {
         if (Math.random() > (this.armor / 100) * Game.Instance.settings.armor_mult
-            || opponent.class_type === ClassType.Wizard) {
+            || opponent.class_type === 'WIZARD') {
             if (Math.random() < this.hit_chance) {
                 this._health -= damage;
                 return this._health <= 0 ? AttackResult.Kill : AttackResult.Hit;

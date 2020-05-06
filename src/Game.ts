@@ -1,6 +1,6 @@
 import fs from 'fs';
 import rl, { keyInPause } from 'readline-sync';
-import ClassType from './ClassType';
+// import ClassType from './ClassType';
 import Fighter from './Fighter';
 import Files from './Files';
 import GameState from './GameState';
@@ -108,7 +108,7 @@ export default class Game {
 
             const class_type = classes[this.io.inputChoose(classes, 'Which class do you wish to be?')];
 
-            this._player = new Player(class_type as ClassType);
+            this._player = new Player(class_type/* as ClassType*/);
 
         } else {
 
@@ -116,7 +116,7 @@ export default class Game {
 
         }
 
-        this._opponent = new Opponent(classes[Math.floor(Math.random() * classes.length)] as ClassType,
+        this._opponent = new Opponent(classes[Math.floor(Math.random() * classes.length)]/* as ClassType*/,
             Math.floor(this._player.level * this.settings.level_opponent_scale));
 
         this._fight_stats = empty_fight_stats;
@@ -302,7 +302,7 @@ export default class Game {
         };
 
         let settings_page: 'first' | 'settings' | 'classes' = 'first';
-        let selected_class: ClassType | 'none' = 'none';
+        let selected_class: string = 'none';
 
         const settings = () => {
 
@@ -356,7 +356,7 @@ export default class Game {
                             settings_page = 'first';
                             selected_class = 'none';
                         } else if (c.includes(input)) {
-                            selected_class = input.toUpperCase() as ClassType;
+                            selected_class = input.toUpperCase()/* as ClassType*/;
                         } else {
                             this.io.output('No class with that name exists.');
                             this.io.input('Press enter to continue...', false);

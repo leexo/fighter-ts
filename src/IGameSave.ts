@@ -1,11 +1,11 @@
-import ClassType from "./ClassType";
+//import ClassType from "./ClassType";
 import IGameStats from "./IGameStats";
 
 export default interface IGameSave {
 
     player: {
         level: number;
-        class: ClassType;
+        class: string;
     };
 
     game_stats: IGameStats;

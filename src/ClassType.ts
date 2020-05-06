@@ -1,4 +1,4 @@
-enum ClassType {
+/*enum ClassType {
 
     Archer = "ARCHER",
     Assassin = "ASSASSIN",
@@ -8,4 +8,4 @@ enum ClassType {
 
 }
 
-export default ClassType;
+export default ClassType; */

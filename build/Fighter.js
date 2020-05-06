@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var ClassType_1 = __importDefault(require("./ClassType"));
+// import ClassType from "./ClassType";
 var Game_1 = __importDefault(require("./Game"));
 var Fighter = /** @class */ (function () {
     function Fighter(type, level) {
@@ -46,7 +46,7 @@ var Fighter = /** @class */ (function () {
     };
     Fighter.prototype.takeDamage = function (damage, opponent) {
         if (Math.random() > (this.armor / 100) * Game_1.default.Instance.settings.armor_mult
-            || opponent.class_type === ClassType_1.default.Wizard) {
+            || opponent.class_type === 'WIZARD') {
             if (Math.random() < this.hit_chance) {
                 this._health -= damage;
                 return this._health <= 0 ? AttackResult.Kill : AttackResult.Hit;
