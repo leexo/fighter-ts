@@ -1,4 +1,3 @@
-//import ClassType from "./ClassType";
 import IGameStats from "./IGameStats";
 
 export default interface IGameSave {

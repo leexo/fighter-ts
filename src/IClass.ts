@@ -1,5 +1,3 @@
-//import ClassType from "./ClassType";
-
 export default interface IClass {
 
     health: number;
