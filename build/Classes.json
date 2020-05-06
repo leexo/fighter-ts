@@ -1,0 +1,67 @@
+{
+    "ARCHER": {
+        "armor": 60,
+        "damage": {
+            "min": 20,
+            "max": 100
+        },
+        "health": 400,
+        "crit_chance": 0.25,
+        "crit_mult": 3,
+        "hit_chance": 0.7,
+        "rest_restore": 10,
+        "weakness": "BANDIT"
+    },
+    "ASSASSIN": {
+        "armor": 30,
+        "damage": {
+            "min": 30,
+            "max": 50
+        },
+        "health": 200,
+        "crit_chance": 0.55,
+        "crit_mult": 2,
+        "hit_chance": 0.9,
+        "rest_restore": 30,
+        "weakness": "ARCHER"
+    },
+    "BANDIT": {
+        "armor": 30,
+        "damage": {
+            "min": 40,
+            "max": 80
+        },
+        "health": 300,
+        "crit_chance": 0.05,
+        "crit_mult": 1.5,
+        "hit_chance": 0.6,
+        "rest_restore": 15,
+        "weakness": "WARRIOR"
+    },
+    "WARRIOR": {
+        "armor": 100,
+        "damage": {
+            "min": 40,
+            "max": 80
+        },
+        "health": 200,
+        "crit_chance": 0.1,
+        "crit_mult": 1.5,
+        "hit_chance": 0.8,
+        "rest_restore": 20,
+        "weakness": "WIZARD"
+    },
+    "WIZARD": {
+        "armor": 0,
+        "damage": {
+            "min": 30,
+            "max": 130
+        },
+        "health": 250,
+        "crit_chance": 0.3,
+        "crit_mult": 2,
+        "hit_chance": 1,
+        "rest_restore": 40,
+        "weakness": "ASSASSIN"
+    }
+}

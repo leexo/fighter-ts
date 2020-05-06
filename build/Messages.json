@@ -1,0 +1,35 @@
+{
+    "variable_identifier": "$var",
+    "opponent_rest": "The opponent chose to rest and is now at $var hp.",
+    "opponent_miss": [
+        "The opponent attacked, but he missed!",
+        "The opponent was not accurate enough and missed!"
+    ],
+    "opponent_kill": [
+        "The opponent attacked you for $var hp and killed you!",
+        "The opponent struck and cost you $var hp, and your life!"
+    ],
+    "opponent_hit": [
+        "The opponent attacked you for $var hp which left you at $var hp!",
+        "The opponent struck and cost you $var hp, with just $var hp left!"
+    ],
+    "opponent_player_block": [
+        "The opponent attacked, but you blocked just in time!"
+    ],
+    "player_rest": "You chose to rest and are now at $var hp.",
+    "player_miss": [
+        "You attacked, but missed the opponent!",
+        "You were not accurate enough and missed!"
+    ],
+    "player_kill": [
+        "You attacked the opponent for $var hp and killed him!",
+        "You struck and cost the opponent $var hp, and his life!"
+    ],
+    "player_hit": [
+        "You attacked the opponent for $var hp which left him at $var hp!",
+        "You struck and cost the opponent $var hp, with just $var hp left!"
+    ],
+    "player_opponent_block": [
+        "You attacked, but the opponent blocked just in time!"
+    ]
+}

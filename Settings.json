@@ -1,0 +1,8 @@
+{
+    "level_scale_mult": 1.5,
+    "level_opponent_scale": 1.1,
+    "weakness_mult": 1.2,
+    "armor_mult": 0.9,
+    "max_crit_chance": 0.9,
+    "block_armor_damage_mult": 0.4
+}

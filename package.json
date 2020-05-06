@@ -1,0 +1,25 @@
+{
+    "name": "fighter-ts",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+        "start": "node ./build/App.js",
+        "watch": "tsc --watch",
+        "mon": "node ./scripts/monitor.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "UNLICENSED",
+    "private": true,
+    "devDependencies": {
+        "@types/chalk": "^2.2.0",
+        "nodemon": "^2.0.3",
+        "typescript": "^3.8.3"
+    },
+    "dependencies": {
+        "@types/readline-sync": "^1.4.3",
+        "chalk": "^4.0.0",
+        "readline-sync": "^1.4.10"
+    }
+}
