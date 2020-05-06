@@ -17,17 +17,19 @@ export default class Player extends Fighter {
 
                 case AttackResult.Block:
                     io.output(getMessage('player_opponent_block'));
-                    Game.Instance.fight_stats.player.times_blocked ++;
+                    Game.Instance.fight_stats.player.times_blocked++;
                     break;
 
                 case AttackResult.Hit:
-                    io.outputFormat(getMessage('player_hit'/* + (a.crit ? '_crit' : '')*/), a.damage, opponent.health);
+                    io.outputFormat(getMessage('player_hit'/* + (a.crit ? '_crit' : '')*/),
+                        Math.round(a.damage),
+                        Math.round(opponent.health));
                     Game.Instance.fight_stats.player.damage_dealt += a.damage;
 
                     break;
 
                 case AttackResult.Kill:
-                    io.outputFormat(getMessage('player_kill'/* + (a.crit ? '_crit' : '')*/), a.damage);
+                    io.outputFormat(getMessage('player_kill'/* + (a.crit ? '_crit' : '')*/), Math.round(a.damage));
                     Game.Instance.fight_stats.player.damage_dealt += a.damage;
                     Game.Instance.endRound('player');
                     break;
@@ -45,7 +47,7 @@ export default class Player extends Fighter {
             deal(this.dealDamage(opponent));
         } else if (input === 1) {
             this.rest();
-            io.outputFormat(getMessage('player_rest'), this.health);
+            io.outputFormat(getMessage('player_rest'), Math.round(this.health));
         } else {
             Game.Instance.setGameState(GameState.Pause);
         }

@@ -82,8 +82,10 @@ var Game = /** @class */ (function () {
         var classes = Object.keys(this.class_bases);
         if (this._player == null) {
             this.io.clear();
-            var class_type = classes[this.io.inputChoose(classes, 'Which class do you wish to be?')];
-            this._player = new Player_1.default(class_type /* as ClassType*/);
+            var ind = this.io.inputChoose(classes.concat(['Back']), 'Which class do you wish to be?');
+            if (ind === classes.length)
+                return;
+            this._player = new Player_1.default(classes[ind] /* as ClassType*/);
         }
         else {
             this._player = new Player_1.default(this._player.class_type, this._player.level);
@@ -166,6 +168,11 @@ var Game = /** @class */ (function () {
                     if (_this.state === GameState_1.default.Fight) {
                         _this.io.newLine();
                         _this.io.input('Next turn...', false);
+                        lastTurn = 'p';
+                    }
+                    else if (_this.state === GameState_1.default.Finish) {
+                        _this.io.newLine();
+                        _this.io.input('Press enter to continue...', false);
                         lastTurn = 'p';
                     }
                 }
@@ -260,11 +267,14 @@ var Game = /** @class */ (function () {
                         }
                         _this.io.output('Classes: ' + c.join(', '));
                         _this.io.newLine();
-                        var input = _this.io.input('Which class do you wish to modify? To go back, enter \'back\'')
+                        var input = _this.io.input('Which class do you wish to modify? To go back, enter \'back\'.\nTo add a new class, enter \'new\'.\n', false)
                             .toLowerCase();
                         if (input === 'back') {
                             settings_page = 'first';
                             selected_class = 'none';
+                        }
+                        else if (input === 'new') {
+                            selected_class = 'new';
                         }
                         else if (c.includes(input)) {
                             selected_class = input.toUpperCase() /* as ClassType*/;
@@ -272,6 +282,36 @@ var Game = /** @class */ (function () {
                         else {
                             _this.io.output('No class with that name exists.');
                             _this.io.input('Press enter to continue...', false);
+                        }
+                    }
+                    else if (selected_class === 'new') {
+                        _this.io.clear();
+                        var types = require('./IClassTypes.json');
+                        var keys = Object.keys(_this.class_bases[Object.keys(_this.class_bases)[0]]);
+                        while (true) {
+                            var name_1 = _this.io.input('What will your class be called? ', false).toUpperCase();
+                            var newClass = {};
+                            for (var _b = 0, keys_1 = keys; _b < keys_1.length; _b++) {
+                                var key = keys_1[_b];
+                                if (types[key] === 'string')
+                                    newClass[key] = _this.io.input(key);
+                                else if (types[key] === 'float')
+                                    newClass[key] = _this.io.inputFloat(key);
+                                else if (types[key] === 'int')
+                                    newClass[key] = _this.io.inputInt(key);
+                            }
+                            if (_this.io.inputYN('Confirm new class')) {
+                                _this.class_bases[name_1] = newClass;
+                                _this.files.saveClassBases();
+                                selected_class = 'none';
+                                break;
+                            }
+                            else {
+                                if (_this.io.inputChoose(['Try again', 'Back']) === 1) {
+                                    selected_class = 'none';
+                                    break;
+                                }
+                            }
                         }
                     }
                     else {

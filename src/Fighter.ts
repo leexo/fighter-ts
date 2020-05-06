@@ -66,7 +66,7 @@ export default abstract class Fighter {
 
     public takeDamage(damage: number, opponent: Fighter) {
         if (Math.random() > (this.armor / 100) * Game.Instance.settings.armor_mult
-            || opponent.class_type === 'WIZARD') {
+            || opponent.class_type === 'WIZARD' || opponent.class_type === 'WARLOCK') {
             if (Math.random() < this.hit_chance) {
                 this._health -= damage;
                 return this._health <= 0 ? AttackResult.Kill : AttackResult.Hit;
@@ -101,13 +101,13 @@ export default abstract class Fighter {
 }
 
 const applyLevelMult = (data: IClass, level: number) => {
-    const level_mult = 1 + (level - 1) * Game.Instance.settings.level_scale_mult;
+    const level_mult = Math.max(1, Math.pow(Game.Instance.settings.level_scale_mult, (level - 1)));
 
-    data.health *= level_mult;
-    data.damage_min *= level_mult;
-    data.damage_max *= level_mult;
+    data.health = Math.round(data.health * level_mult);
+    data.damage_min = Math.round(data.damage_min * level_mult);
+    data.damage_max = Math.round(data.damage_max * level_mult);
 
-    data.armor = Math.min(data.armor * level_mult, 100);
+    data.armor = Math.min(Math.round(data.armor * level_mult), 100);
 
     data.crit_chance = Math.min(data.crit_chance * level_mult, Game.Instance.settings.max_crit_chance);
     data.crit_mult = data.crit_mult * level_mult;

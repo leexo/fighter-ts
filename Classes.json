@@ -53,5 +53,16 @@
         "hit_chance": 1,
         "rest_restore": 40,
         "weakness": "ASSASSIN"
+    },
+    "WARLOCK": {
+        "armor": 40,
+        "damage_min": 30,
+        "damage_max": 80,
+        "health": 250,
+        "crit_chance": 0.3,
+        "crit_mult": 2,
+        "hit_chance": 1,
+        "rest_restore": 40,
+        "weakness": "ASSASSIN"
     }
 }

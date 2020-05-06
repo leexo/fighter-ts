@@ -43,11 +43,11 @@ var Player = /** @class */ (function (_super) {
                     Game_1.default.Instance.fight_stats.player.times_blocked++;
                     break;
                 case Fighter_1.AttackResult.Hit:
-                    io.outputFormat(Messages_1.default('player_hit' /* + (a.crit ? '_crit' : '')*/), a.damage, opponent.health);
+                    io.outputFormat(Messages_1.default('player_hit' /* + (a.crit ? '_crit' : '')*/), Math.round(a.damage), Math.round(opponent.health));
                     Game_1.default.Instance.fight_stats.player.damage_dealt += a.damage;
                     break;
                 case Fighter_1.AttackResult.Kill:
-                    io.outputFormat(Messages_1.default('player_kill' /* + (a.crit ? '_crit' : '')*/), a.damage);
+                    io.outputFormat(Messages_1.default('player_kill' /* + (a.crit ? '_crit' : '')*/), Math.round(a.damage));
                     Game_1.default.Instance.fight_stats.player.damage_dealt += a.damage;
                     Game_1.default.Instance.endRound('player');
                     break;
@@ -62,7 +62,7 @@ var Player = /** @class */ (function (_super) {
         }
         else if (input === 1) {
             this.rest();
-            io.outputFormat(Messages_1.default('player_rest'), this.health);
+            io.outputFormat(Messages_1.default('player_rest'), Math.round(this.health));
         }
         else {
             Game_1.default.Instance.setGameState(GameState_1.default.Pause);

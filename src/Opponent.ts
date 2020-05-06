@@ -20,12 +20,12 @@ export default class Opponent extends Fighter {
                     break;
 
                 case AttackResult.Hit:
-                    io.outputFormat(getMessage('opponent_hit'), a.damage, player.health);
+                    io.outputFormat(getMessage('opponent_hit'), Math.round(a.damage), Math.round(player.health));
                     Game.Instance.fight_stats.opponent.damage_dealt += a.damage;
                     break;
 
                 case AttackResult.Kill:
-                    io.outputFormat(getMessage('opponent_kill'), a.damage);
+                    io.outputFormat(getMessage('opponent_kill'), Math.round(a.damage));
                     Game.Instance.fight_stats.opponent.damage_dealt += a.damage;
                     Game.Instance.endRound('opponent');
                     break;
@@ -41,7 +41,7 @@ export default class Opponent extends Fighter {
             deal(this.dealDamage(player));
         } else if (this.health < this.base.health * 0.2) {
             this.rest();
-            io.outputFormat(getMessage('opponent_rest'), this.health);
+            io.outputFormat(getMessage('opponent_rest'), Math.round(this.health));
         } else {
             deal(this.dealDamage(player));
         }

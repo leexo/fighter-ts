@@ -42,11 +42,11 @@ var Opponent = /** @class */ (function (_super) {
                     Game_1.default.Instance.fight_stats.opponent.times_blocked++;
                     break;
                 case Fighter_1.AttackResult.Hit:
-                    io.outputFormat(Messages_1.default('opponent_hit'), a.damage, player.health);
+                    io.outputFormat(Messages_1.default('opponent_hit'), Math.round(a.damage), Math.round(player.health));
                     Game_1.default.Instance.fight_stats.opponent.damage_dealt += a.damage;
                     break;
                 case Fighter_1.AttackResult.Kill:
-                    io.outputFormat(Messages_1.default('opponent_kill'), a.damage);
+                    io.outputFormat(Messages_1.default('opponent_kill'), Math.round(a.damage));
                     Game_1.default.Instance.fight_stats.opponent.damage_dealt += a.damage;
                     Game_1.default.Instance.endRound('opponent');
                     break;
@@ -60,7 +60,7 @@ var Opponent = /** @class */ (function (_super) {
         }
         else if (this.health < this.base.health * 0.2) {
             this.rest();
-            io.outputFormat(Messages_1.default('opponent_rest'), this.health);
+            io.outputFormat(Messages_1.default('opponent_rest'), Math.round(this.health));
         }
         else {
             deal(this.dealDamage(player));

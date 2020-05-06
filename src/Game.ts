@@ -106,9 +106,12 @@ export default class Game {
 
             this.io.clear();
 
-            const class_type = classes[this.io.inputChoose(classes, 'Which class do you wish to be?')];
+            const ind = this.io.inputChoose(classes.concat(['Back']), 'Which class do you wish to be?');
 
-            this._player = new Player(class_type/* as ClassType*/);
+            if (ind === classes.length)
+                return;
+
+            this._player = new Player(classes[ind]/* as ClassType*/);
 
         } else {
 
@@ -219,6 +222,11 @@ export default class Game {
                     if (this.state === GameState.Fight) {
                         this.io.newLine();
                         this.io.input('Next turn...', false);
+
+                        lastTurn = 'p';
+                    } else if (this.state === GameState.Finish) {
+                        this.io.newLine();
+                        this.io.input('Press enter to continue...', false);
 
                         lastTurn = 'p';
                     }
@@ -349,18 +357,56 @@ export default class Game {
                         this.io.output('Classes: ' + c.join(', '));
 
                         this.io.newLine();
-                        const input = this.io.input('Which class do you wish to modify? To go back, enter \'back\'')
+                        const input = this.io.input('Which class do you wish to modify? To go back, enter \'back\'.\nTo add a new class, enter \'new\'.\n', false)
                             .toLowerCase();
 
                         if (input === 'back') {
                             settings_page = 'first';
                             selected_class = 'none';
+                        } else if (input === 'new') {
+                            selected_class = 'new';
                         } else if (c.includes(input)) {
                             selected_class = input.toUpperCase()/* as ClassType*/;
                         } else {
                             this.io.output('No class with that name exists.');
                             this.io.input('Press enter to continue...', false);
                         }
+
+                    } else if (selected_class === 'new') {
+
+                        this.io.clear();
+
+                        const types = require('./IClassTypes.json');
+                        const keys = Object.keys(this.class_bases[Object.keys(this.class_bases)[0]]);
+
+                        while (true) {
+
+                            const name = this.io.input('What will your class be called? ', false).toUpperCase();
+                            const newClass: IKeyObject<any> = {};
+
+                            for (const key of keys) {
+                                if (types[key] === 'string')
+                                    newClass[key] = this.io.input(key);
+                                else if (types[key] === 'float')
+                                    newClass[key] = this.io.inputFloat(key);
+                                else if (types[key] === 'int')
+                                    newClass[key] = this.io.inputInt(key);
+                            }
+
+                            if (this.io.inputYN('Confirm new class')) {
+                                this.class_bases[name] = newClass as IClass;
+                                this.files.saveClassBases();
+
+                                selected_class = 'none';
+                                break;
+                            } else {
+                                if (this.io.inputChoose(['Try again', 'Back']) === 1) {
+                                    selected_class = 'none';
+                                    break;
+                                }
+                            }
+                        }
+
                     } else {
 
                         this.editObject(this.class_bases[selected_class],
@@ -506,7 +552,7 @@ const pado = (o: IKeyObject<any>) => {
             ret.push(`${pad(key + ':', maxLength)} ${o[key]}`);
 
     return ret;
-}
+};
 
 const pad = (s: string, n: number) => {
     for (let i = s.length; i < n; i++)

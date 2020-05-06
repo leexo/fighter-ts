@@ -1,5 +1,4 @@
 //import ClassType from "./ClassType";
-import IMinMax from "./IMinMax";
 
 export default interface IClass {
 

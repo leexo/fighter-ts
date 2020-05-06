@@ -1,0 +1,11 @@
+{
+    "health": "int",
+    "damage_min": "int",
+    "damage_max": "int",
+    "armor": "int",
+    "crit_chance": "float",
+    "crit_mult": "float",
+    "hit_chance": "float",
+    "rest_restore": "int",
+    "weakness": "string"
+}
